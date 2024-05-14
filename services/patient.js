@@ -9,7 +9,13 @@ const createPatient = async (req, res, next) => {
   });
 };
 
-const getPatient = async (req, res, next) => {};
+const getPatient = async (req, res, next) => {
+  const getPatient= await patientModel.find()
+  res.status(200).json(
+      {data:getPatient,
+          success:true
+      
+})};
 
 module.exports = { 
     createPatient: createPatient,

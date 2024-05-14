@@ -9,4 +9,8 @@ router.get('/', function(req, res, next) {
 
 // Create patient
 router.post("/",patientServices.createPatient)
+
+//get patient
+
+router.get('/',patientServices.getPatient)
 module.exports = router;
