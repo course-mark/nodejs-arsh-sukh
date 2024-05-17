@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const patientModel = require("../models/patient.model.js");
 const createPatient = async (req, res, next) => {
   const data = req.body;
@@ -79,15 +80,26 @@ const getPatient = async (req, res, next) => {
             $project: {
                 name: 1,
                 age: 1,
-                disease: 1
+                disease: 1,
+                assignedDoctor:1
             }
         }
     ])
     res.status(200).json({data:getPatients,success:true})
 }
 
+const assignDoctor = async(req, res, next)=>{
+    const patientId = req.params.id 
+    const doctorId = req.body.doctorId 
+    const patient = await patientModel.findByIdAndUpdate(patientId,{  
+        assignedDoctor: new mongoose.Types.ObjectId(doctorId)
+    })
+    return patient
+}
+
 module.exports = {
   createPatient: createPatient,
   getPatient: getPatient,
+  assignDoctor,
   name: "manjot",
 };

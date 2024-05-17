@@ -8,4 +8,6 @@ router.post("/",patientServices.createPatient)
 //get patient
 router.get('/',patientServices.getPatient)
 
+router.patch('/:id/assign-doctor',patientServices.assignDoctor)
+
 module.exports = router;
